@@ -10,7 +10,7 @@ class RepositoryController extends Controller
     public function index()
     {
         return view('repositories.index', [
-            'repositories' => auth()->user()->repositories
+            'repositories' => auth()->user()->repositories,
         ]);
     }
 
@@ -28,7 +28,10 @@ class RepositoryController extends Controller
 
     public function store(RepositoryRequest $request)
     {
-        $request->user()->repositories()->create($request->all());
+        $request
+            ->user()
+            ->repositories()
+            ->create($request->all());
 
         return redirect()->route('repositories.index');
     }
@@ -43,7 +46,7 @@ class RepositoryController extends Controller
     public function update(RepositoryRequest $request, Repository $repository)
     {
         $this->authorize('pass', $repository);
-        
+
         $repository->update($request->all());
 
         return redirect()->route('repositories.edit', $repository);
