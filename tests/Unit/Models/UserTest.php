@@ -14,7 +14,7 @@ class UserTest extends TestCase
     public function test_has_many_repositories()
     {
         $user = new User();
-        // dd($user->repositories)
+        // dd($user->repositories);
         $this->assertInstanceOf(Collection::class, $user->repositories);
     }
 }
