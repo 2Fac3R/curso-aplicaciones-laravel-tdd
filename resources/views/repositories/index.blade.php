@@ -6,10 +6,10 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="flex-auto mx-auto max-w-7xl sm:px-6 lg:px-8">
             <p class="mb-4 text-right">
                 <a href="{{ route('repositories.create') }}"
-                    class="px-4 py-2 text-xs font-bold text-white bg-blue-500 rounded-md">
+                    class="px-4 py-2 font-semibold text-white bg-blue-500 rounded-md text-md">
                     Agregar un nuevo repositorio
                 </a>
             </p>
@@ -27,19 +27,21 @@
                     <tbody>
                         @forelse ($repositories as $repository)
                             <tr>
-                                <td class="px-4 py-2 border">{{ $repository->id }}</td>
-                                <td class="px-4 py-2 border">{{ $repository->url }}</td>
-                                <td class="px-4 py-2">
-                                    <a href="{{ route('repositories.show', $repository) }}">
+                                <td class="px-6 py-2">{{ $repository->id }}</td>
+                                <td class="px-6 py-2">{{ $repository->url }}</td>
+                                <td class="px-2">
+                                    <a href="{{ route('repositories.show', $repository) }}"
+                                        class="px-4 text-white bg-blue-500 rounded-md">
                                         Ver
                                     </a>
                                 </td>
-                                <td class="px-4 py-2">
-                                    <a href="{{ route('repositories.edit', $repository) }}">
+                                <td class="px-2">
+                                    <a href="{{ route('repositories.edit', $repository) }}"
+                                        class="px-4 text-white bg-green-500 rounded-md">
                                         Editar
                                     </a>
                                 </td>
-                                <td class="px-4 py-2">
+                                <td class="px-2">
                                     <form action="{{ route('repositories.destroy', $repository) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
